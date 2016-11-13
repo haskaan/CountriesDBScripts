@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CountriesMySQLModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountyID" Type="int" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PlateNo" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PhoneCode" Type="varchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="counties">
+          <Key>
+            <PropertyRef Name="CountyID" />
+          </Key>
+          <Property Name="CountyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="CountyName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BinaryCode" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="TripleCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneCode" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="neighborhood">
+          <Key>
+            <PropertyRef Name="NeighborhoodID" />
+          </Key>
+          <Property Name="NeighborhoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="NeighborhoodName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Area_CountyID">
+          <End Role="counties" Type="Self.counties" Multiplicity="1" />
+          <End Role="area" Type="Self.area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="counties">
+              <PropertyRef Name="CountyID" />
+            </Principal>
+            <Dependent Role="area">
+              <PropertyRef Name="CountyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cities_CountryID">
+          <End Role="countries" Type="Self.countries" Multiplicity="1" />
+          <End Role="cities" Type="Self.cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="cities">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Counties_CityID">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="counties" Type="Self.counties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="counties">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Neighborhood_AreaID">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="neighborhood" Type="Self.neighborhood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="neighborhood">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CountriesMySQLModelStoreContainer">
+          <EntitySet Name="area" EntityType="Self.area" Schema="countries" store:Type="Tables" />
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="countries" store:Type="Tables" />
+          <EntitySet Name="counties" EntityType="Self.counties" Schema="countries" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="countries" store:Type="Tables" />
+          <EntitySet Name="neighborhood" EntityType="Self.neighborhood" Schema="countries" store:Type="Tables" />
+          <AssociationSet Name="FK_Area_CountyID" Association="Self.FK_Area_CountyID">
+            <End Role="counties" EntitySet="counties" />
+            <End Role="area" EntitySet="area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cities_CountryID" Association="Self.FK_Cities_CountryID">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Counties_CityID" Association="Self.FK_Counties_CityID">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="counties" EntitySet="counties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Neighborhood_AreaID" Association="Self.FK_Neighborhood_AreaID">
+            <End Role="area" EntitySet="area" />
+            <End Role="neighborhood" EntitySet="neighborhood" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CountriesMySQLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountyID" Type="Int32" Nullable="false" />
+          <Property Name="AreaName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="county" Relationship="Self.FK_Area_CountyID" FromRole="area" ToRole="counties" />
+          <NavigationProperty Name="neighborhoods" Relationship="Self.FK_Neighborhood_AreaID" FromRole="area" ToRole="neighborhood" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlateNo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneCode" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.FK_Cities_CountryID" FromRole="cities" ToRole="countries" />
+          <NavigationProperty Name="counties" Relationship="Self.FK_Counties_CityID" FromRole="cities" ToRole="counties" />
+        </EntityType>
+        <EntityType Name="county">
+          <Key>
+            <PropertyRef Name="CountyID" />
+          </Key>
+          <Property Name="CountyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="CountyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="areas" Relationship="Self.FK_Area_CountyID" FromRole="counties" ToRole="area" />
+          <NavigationProperty Name="city" Relationship="Self.FK_Counties_CityID" FromRole="counties" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BinaryCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TripleCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_Cities_CountryID" FromRole="countries" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="neighborhood">
+          <Key>
+            <PropertyRef Name="NeighborhoodID" />
+          </Key>
+          <Property Name="NeighborhoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="NeighborhoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="Self.FK_Neighborhood_AreaID" FromRole="neighborhood" ToRole="area" />
+        </EntityType>
+        <Association Name="FK_Area_CountyID">
+          <End Role="counties" Type="Self.county" Multiplicity="1" />
+          <End Role="area" Type="Self.area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="counties">
+              <PropertyRef Name="CountyID" />
+            </Principal>
+            <Dependent Role="area">
+              <PropertyRef Name="CountyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Neighborhood_AreaID">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="neighborhood" Type="Self.neighborhood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="neighborhood">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cities_CountryID">
+          <End Role="countries" Type="Self.country" Multiplicity="1" />
+          <End Role="cities" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="cities">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Counties_CityID">
+          <End Role="cities" Type="Self.city" Multiplicity="1" />
+          <End Role="counties" Type="Self.county" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="counties">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CountriesMySQLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="areas" EntityType="Self.area" />
+          <EntitySet Name="cities" EntityType="Self.city" />
+          <EntitySet Name="counties" EntityType="Self.county" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="neighborhoods" EntityType="Self.neighborhood" />
+          <AssociationSet Name="FK_Area_CountyID" Association="Self.FK_Area_CountyID">
+            <End Role="counties" EntitySet="counties" />
+            <End Role="area" EntitySet="areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Neighborhood_AreaID" Association="Self.FK_Neighborhood_AreaID">
+            <End Role="area" EntitySet="areas" />
+            <End Role="neighborhood" EntitySet="neighborhoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cities_CountryID" Association="Self.FK_Cities_CountryID">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Counties_CityID" Association="Self.FK_Counties_CityID">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="counties" EntitySet="counties" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CountriesMySQLModelStoreContainer" CdmEntityContainer="CountriesMySQLEntities">
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="CountriesMySQLModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="CountriesMySQLModel.city">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="PlateNo" ColumnName="PlateNo" />
+                <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="counties">
+            <EntityTypeMapping TypeName="CountriesMySQLModel.county">
+              <MappingFragment StoreEntitySet="counties">
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="CountriesMySQLModel.country">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="BinaryCode" ColumnName="BinaryCode" />
+                <ScalarProperty Name="TripleCode" ColumnName="TripleCode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="neighborhoods">
+            <EntityTypeMapping TypeName="CountriesMySQLModel.neighborhood">
+              <MappingFragment StoreEntitySet="neighborhood">
+                <ScalarProperty Name="NeighborhoodID" ColumnName="NeighborhoodID" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="NeighborhoodName" ColumnName="NeighborhoodName" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
