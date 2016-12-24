@@ -4,7 +4,7 @@ GO
 INSERT INTO [Counties]
            ([CityID]
            ,[CountyName])
-		SELECT CitiesCT.CityID, LTRIM(RTRIM(DT.[ilçe])
+		SELECT CitiesCT.CityID, LTRIM(RTRIM(DT.[ilçe]))
 		FROM Cities AS CitiesCT
 
 		INNER JOIN ['Ýl-Ýlçe$'] AS DT

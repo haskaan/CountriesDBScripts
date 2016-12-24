@@ -5,7 +5,7 @@ INSERT INTO [dbo].[Neighborhood]
            ([AreaID]
            ,[NeighborhoodName]
            ,[ZipCode])
-	 SELECT AreaCT.AreaID, LTRIM(RTRIM(DT.[Mahalle]), LTRIM(RTRIM(DT.[PK])
+	 SELECT AreaCT.AreaID, LTRIM(RTRIM(DT.[Mahalle])), LTRIM(RTRIM(DT.[PK]))
 	 FROM Cities AS CitiesCT
 	 INNER JOIN Counties AS CountiesCT
 	 ON CountiesCT.CityID = CitiesCT.CityID
