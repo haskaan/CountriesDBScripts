@@ -1,0 +1,61 @@
+**Release Note v3.3:**
+
+PostgreSQL support added.
+- Added PostgreSQL schema and data scripts.
+- Added author, create date and description lines.
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Release Note v3.2:**
+
+CountriesDB updated by content dated 14.02.2017.
+- MySQL and MSSQL database has been updated.
+- Add Resources/ReadMe.txt
+- Add Resources/DataTransfer/Drop_Temp_Tables.sql
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Release Note v3.1:**
+
+MySQL database has been updated.
+- MySQL database has been updated.
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Release Note v3.0:**
+
+CountriesDB updated by content dated 15.12.2016.
+- MySQL and MSSQL database has been updated.
+- MSSQL database transfer files has been updated.
+- The necessary programs have been added to transfer data from Excel to MSSQL Server.
+  - Microsoft.ACE.OLEDB.12.0.
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Release Note v2.1:**
+
+Hotfix in MySQL database..
+- MySQL database has been updated with Turkish data.
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Release Note v2.0:**
+
+CountriesDB updated by content dated 2016.
+- MySQL support was added.
+- CountriesDB Scheme updated.
+- Sql files are parsed.
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Pre-Release Note v1.1:**
+
+The version dated 2014 was created using the MSSQL database.
+- CountriesDB Schema was added.
+- Stable Countries and Cities tables were add.
+
+#----------------------------------------------------------------------------------------------------------#
+
+**Release Note v1.0:**
+
+The version dated 2014 was created using the MSSQL database.
