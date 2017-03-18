@@ -1,3 +1,9 @@
+-- =============================================
+-- Author:		Kaan HAS
+-- Create date: 12.11.2016
+-- Description:	MySQL için Türkiye il, ilçe ve mahalle veritabanı şemasıdır.
+-- =============================================
+
 -- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
