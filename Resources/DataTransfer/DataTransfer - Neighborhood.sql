@@ -2,17 +2,17 @@ USE [Countries]
 GO
 
 INSERT INTO [dbo].[Neighborhood]
-           ([AreaID]
+           ([DistrictID]
            ,[NeighborhoodName]
            ,[ZipCode])
-	 SELECT AreaCT.AreaID, LTRIM(RTRIM(DT.[Mahalle])), LTRIM(RTRIM(DT.[PK]))
-	 FROM Cities AS CitiesCT
-	 INNER JOIN Counties AS CountiesCT
-	 ON CountiesCT.CityID = CitiesCT.CityID
-	 INNER JOIN Area AS AreaCT
-	 ON AreaCT.CountyID = CountiesCT.CountyID
+	 SELECT DistrictCT.DistrictID, LTRIM(RTRIM(DT.[Mahalle])), LTRIM(RTRIM(DT.[PK]))
+	 FROM City AS CityCT
+	 INNER JOIN Town AS TownCT
+	 ON TownCT.CityID = CityCT.CityID
+	 INNER JOIN District AS DistrictCT
+	 ON DistrictCT.TownID = TownCT.TownID
 
 	 INNER JOIN ['Ýl-Ýlçe-Semt-Mahalle-PK$'] AS DT
-	 ON [il] = CitiesCT.CityName AND [ilçe] = CountiesCT.CountyName AND [semt_bucak_belde] = AreaCT.AreaName
-	 ORDER BY CitiesCT.CityName, CountiesCT.CountyName, AreaCT.AreaName, DT.[Mahalle]
+	 ON [il] = CityCT.CityName AND [ilçe] = TownCT.TownName AND [semt_bucak_belde] = DistrictCT.DistrictName
+	 ORDER BY CityCT.CityName, TownCT.TownName, DistrictCT.DistrictName, DT.[Mahalle]
 GO

@@ -1,14 +1,16 @@
 EXCEL Datalarýnýn Kopyalanmasý
 ------------------------------
 1. Öncelikle tüm excel datalarý Tümü adlý sayfaya kopyalanmalýdýr.
-2. Daha sonra Tümü sayfasýndan Ýl-Ýlçe-Semt-Mahalle-PK sayfasýna kopyalanmalýdýr.
-	2.1. Tüm sutünlar seçilerek Veri->Yinelenenleri Kaldýr penceresinden Verilerimde üstbilgi var seçeneði seçilerek ayrýþtýrýlmalýdýr.
-3. Tümü sayfasýndan Ýl-Ýlçe-Semt sutünlarýný seçerek Ýl-Ýlçe-Semt sayfasýna kopyalanmalýdýr.
+	1.1. Tümü sayfasýna kopyalama iþleminde PlateNo için 1. sütun boþ býrakýlmalýdýr. Diðer tüm sayfalarda da ayný iþlem olmalýdýr.
+2. Excel isimli dosyada PlateNoSplit isimli makro çalýþtýrýlmalýdýr.
+3. Daha sonra Tümü sayfasýndan Ýl-Ýlçe-Semt-Mahalle-PK sayfasýna kopyalanmalýdýr.
 	3.1. Tüm sutünlar seçilerek Veri->Yinelenenleri Kaldýr penceresinden Verilerimde üstbilgi var seçeneði seçilerek ayrýþtýrýlmalýdýr.
-4. Tümü sayfasýndan Ýl-Ýlçe sutünlarýný seçerek Ýl-Ýlçe sayfasýna kopyalanmalýdýr.
+4. Tümü sayfasýndan Ýl-Ýlçe-Semt sutünlarýný seçerek Ýl-Ýlçe-Semt sayfasýna kopyalanmalýdýr.
 	4.1. Tüm sutünlar seçilerek Veri->Yinelenenleri Kaldýr penceresinden Verilerimde üstbilgi var seçeneði seçilerek ayrýþtýrýlmalýdýr.
-5. Tümü sayfasýndan Ýl sutünunu seçerek Ýl sayfasýna kopyalanmalýdýr.
+5. Tümü sayfasýndan Ýl-Ýlçe sutünlarýný seçerek Ýl-Ýlçe sayfasýna kopyalanmalýdýr.
 	5.1. Tüm sutünlar seçilerek Veri->Yinelenenleri Kaldýr penceresinden Verilerimde üstbilgi var seçeneði seçilerek ayrýþtýrýlmalýdýr.
+6. Tümü sayfasýndan Ýl sutünunu seçerek Ýl sayfasýna kopyalanmalýdýr.
+	6.1. Tüm sutünlar seçilerek Veri->Yinelenenleri Kaldýr penceresinden Verilerimde üstbilgi var seçeneði seçilerek ayrýþtýrýlmalýdýr.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
