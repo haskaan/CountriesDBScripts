@@ -74,24 +74,30 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.9.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.11\Assemblies\v4.5\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.9\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.11\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -102,16 +108,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\MSSQL\Area.cs">
-      <DependentUpon>MSSQL.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\MSSQL\City.cs">
       <DependentUpon>MSSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\MSSQL\Country.cs">
       <DependentUpon>MSSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\MSSQL\County.cs">
+    <Compile Include="DAL\MSSQL\District.cs">
       <DependentUpon>MSSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\MSSQL\MSSQL.Context.cs">
@@ -132,8 +135,8 @@
     <Compile Include="DAL\MSSQL\Neighborhood.cs">
       <DependentUpon>MSSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\MySQL\area.cs">
-      <DependentUpon>MySQL.tt</DependentUpon>
+    <Compile Include="DAL\MSSQL\Town.cs">
+      <DependentUpon>MSSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\MySQL\city.cs">
       <DependentUpon>MySQL.tt</DependentUpon>
@@ -141,7 +144,7 @@
     <Compile Include="DAL\MySQL\country.cs">
       <DependentUpon>MySQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\MySQL\county.cs">
+    <Compile Include="DAL\MySQL\district.cs">
       <DependentUpon>MySQL.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\MySQL\MySQL.Context.cs">
@@ -162,12 +165,17 @@
     <Compile Include="DAL\MySQL\neighborhood.cs">
       <DependentUpon>MySQL.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\MySQL\town.cs">
+      <DependentUpon>MySQL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="DAL\MSSQL\MSSQL.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MSSQL.Designer.cs</LastGenOutput>
@@ -182,7 +190,9 @@
     <None Include="DAL\MySQL\MySQL.edmx.diagram">
       <DependentUpon>MySQL.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

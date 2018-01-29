@@ -25,10 +25,10 @@ namespace CountriesDBTransfer.DAL.MSSQL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<County> Counties { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
+        public virtual DbSet<Town> Towns { get; set; }
     }
 }

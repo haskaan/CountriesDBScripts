@@ -7,25 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CountriesDBTransfer.DAL.MySQL
+namespace CountriesDBTransfer.DAL.MSSQL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class county
+    public partial class District
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public county()
+        public District()
         {
-            this.areas = new HashSet<area>();
+            this.Neighborhoods = new HashSet<Neighborhood>();
         }
     
-        public int CountyID { get; set; }
-        public int CityID { get; set; }
-        public string CountyName { get; set; }
+        public int DistrictID { get; set; }
+        public int TownID { get; set; }
+        public string DistrictName { get; set; }
     
+        public virtual Town Town { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<area> areas { get; set; }
-        public virtual city city { get; set; }
+        public virtual ICollection<Neighborhood> Neighborhoods { get; set; }
     }
 }

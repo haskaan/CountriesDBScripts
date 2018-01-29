@@ -23,14 +23,14 @@ namespace CountriesDBTransfer
         [Description("City")]
         CITY,
 
-        [Description("County")]
-        COUNTY,
+        [Description("Town")]
+        TOWN,
 
-        [Description("Area")]
-        AREA,
+        [Description("District")]
+        DISTRICT,
 
-        [Description("Neighborhoods")]
-        NEIGHBORHOODS,
+        [Description("Neighborhood")]
+        NEIGHBORHOOD,
 
         [Description("DB Saving")]
         SAVING,
@@ -71,15 +71,15 @@ namespace CountriesDBTransfer
             Extensions.TransferStepLog(TS, dateTime);
             TableCitiesTransfer(mssqlDB, mysqlDB);
 
-            TS = TransferStep.COUNTY;
+            TS = TransferStep.TOWN;
             Extensions.TransferStepLog(TS, dateTime);
-            TableCountiesTransfer(mssqlDB, mysqlDB);
+            TableTownsTransfer(mssqlDB, mysqlDB);
 
-            TS = TransferStep.AREA;
+            TS = TransferStep.DISTRICT;
             Extensions.TransferStepLog(TS, dateTime);
-            TableAreaTransfer(mssqlDB, mysqlDB);
+            TableDistrictsTransfer(mssqlDB, mysqlDB);
 
-            TS = TransferStep.NEIGHBORHOODS;
+            TS = TransferStep.NEIGHBORHOOD;
             Extensions.TransferStepLog(TS, dateTime);
             TableNeighborhoodsTransfer(mssqlDB, mysqlDB);
 
@@ -121,30 +121,30 @@ namespace CountriesDBTransfer
             mysqlDB.cities.AddRange(citiesQuery);
         }
 
-        private static void TableCountiesTransfer(CountriesMSSQLEntities mssqlDB, CountriesMySQLEntities mysqlDB)
+        private static void TableTownsTransfer(CountriesMSSQLEntities mssqlDB, CountriesMySQLEntities mysqlDB)
         {
-            var countiesQuery = (from c in mssqlDB.Counties.AsParallel()
-                                  select new county()
+            var countiesQuery = (from c in mssqlDB.Towns.AsParallel()
+                                  select new town()
                                   {
-                                      CountyID = c.CountyID,
+                                      TownID = c.TownID,
                                       CityID = c.CityID,
-                                      CountyName = c.CountyName
+                                      TownName = c.TownName
                                   });
 
-            mysqlDB.counties.AddRange(countiesQuery);
+            mysqlDB.towns.AddRange(countiesQuery);
         }
 
-        private static void TableAreaTransfer(CountriesMSSQLEntities mssqlDB, CountriesMySQLEntities mysqlDB)
+        private static void TableDistrictsTransfer(CountriesMSSQLEntities mssqlDB, CountriesMySQLEntities mysqlDB)
         {
-            var areaQuery = (from a in mssqlDB.Areas.AsParallel()
-                                  select new area()
+            var areaQuery = (from a in mssqlDB.Districts.AsParallel()
+                                  select new district()
                                   {
-                                      AreaID = a.AreaID,
-                                      CountyID = a.CountyID,
-                                      AreaName = a.AreaName
+                                      DistrictID = a.DistrictID,
+                                      TownID = a.TownID,
+                                      DistrictName = a.DistrictName
                                   });
 
-            mysqlDB.areas.AddRange(areaQuery);
+            mysqlDB.districts.AddRange(areaQuery);
         }
 
         private static void TableNeighborhoodsTransfer(CountriesMSSQLEntities mssqlDB, CountriesMySQLEntities mysqlDB)
@@ -153,7 +153,7 @@ namespace CountriesDBTransfer
                                   select new neighborhood()
                                   {
                                       NeighborhoodID = n.NeighborhoodID,
-                                      AreaID = n.AreaID,
+                                      DistrictID = n.DistrictID,
                                       NeighborhoodName = n.NeighborhoodName,
                                       ZipCode = n.ZipCode
                                   });

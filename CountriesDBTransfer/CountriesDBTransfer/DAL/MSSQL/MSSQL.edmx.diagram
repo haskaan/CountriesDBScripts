@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a9084af53bc446bd85e0a55c22accfe9" Name="Diagram1">
-        <EntityTypeShape EntityType="CountriesMSSQLModel.Area" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CountriesMSSQLModel.City" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CountriesMSSQLModel.County" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CountriesMSSQLModel.Country" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CountriesMSSQLModel.Neighborhood" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="CountriesMSSQLModel.FK_Area_Counties" ManuallyRouted="false" />
-        <AssociationConnector Association="CountriesMSSQLModel.FK_Neighborhood_Area" ManuallyRouted="false" />
-        <AssociationConnector Association="CountriesMSSQLModel.FK_Cities_Countries" ManuallyRouted="false" />
-        <AssociationConnector Association="CountriesMSSQLModel.FK_Counties_Cities" ManuallyRouted="false" />
+      <Diagram DiagramId="4ffec00a31bf4da386aa4dee19b11e4b" Name="Diagram1">
+        <EntityTypeShape EntityType="MSSQL.City" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSSQL.Country" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSSQL.District" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSSQL.Neighborhood" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSSQL.Town" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="MSSQL.FK_City_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="MSSQL.FK_Town_City" ManuallyRouted="false" />
+        <AssociationConnector Association="MSSQL.FK_District_Town" ManuallyRouted="false" />
+        <AssociationConnector Association="MSSQL.FK_Neighborhood_District" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

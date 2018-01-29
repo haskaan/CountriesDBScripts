@@ -17,7 +17,7 @@ namespace CountriesDBTransfer.DAL.MySQL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public city()
         {
-            this.counties = new HashSet<county>();
+            this.towns = new HashSet<town>();
         }
     
         public int CityID { get; set; }
@@ -28,6 +28,6 @@ namespace CountriesDBTransfer.DAL.MySQL
     
         public virtual country country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<county> counties { get; set; }
+        public virtual ICollection<town> towns { get; set; }
     }
 }

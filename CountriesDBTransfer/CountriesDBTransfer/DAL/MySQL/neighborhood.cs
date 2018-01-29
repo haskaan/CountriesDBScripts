@@ -15,10 +15,10 @@ namespace CountriesDBTransfer.DAL.MySQL
     public partial class neighborhood
     {
         public int NeighborhoodID { get; set; }
-        public int AreaID { get; set; }
+        public int DistrictID { get; set; }
         public string NeighborhoodName { get; set; }
         public string ZipCode { get; set; }
     
-        public virtual area area { get; set; }
+        public virtual district district { get; set; }
     }
 }
