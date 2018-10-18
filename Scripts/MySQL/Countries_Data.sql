@@ -1,7 +1,7 @@
 -- =============================================
 -- Author:		Kaan HAS
 -- Create date: 19.10.2018
--- Description:	MySQL için Türkiye il, ilçe ve mahalle veritabanı şema ve verileridir.
+-- Description:	MySQL için Türkiye il, ilçe ve mahalle veritabanı verileridir.
 -- =============================================
 
 -- phpMyAdmin SQL Dump
@@ -9,7 +9,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 18 Eki 2018, 21:54:28
+-- Üretim Zamanı: 18 Eki 2018, 21:54:41
 -- Sunucu sürümü: 5.7.19
 -- PHP Sürümü: 5.6.31
 
@@ -27,23 +27,6 @@ SET time_zone = "+00:00";
 --
 -- Veritabanı: `countries`
 --
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `city`
---
-
-DROP TABLE IF EXISTS `city`;
-CREATE TABLE IF NOT EXISTS `city` (
-  `CityID` int(11) NOT NULL AUTO_INCREMENT,
-  `CountryID` int(11) NOT NULL,
-  `CityName` varchar(100) NOT NULL,
-  `PlateNo` varchar(2) NOT NULL,
-  `PhoneCode` varchar(7) NOT NULL,
-  PRIMARY KEY (`CityID`),
-  KEY `FK_City_CountryID` (`CountryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 --
 -- Tablo döküm verisi `city`
@@ -131,22 +114,6 @@ INSERT INTO `city` (`CityID`, `CountryID`, `CityName`, `PlateNo`, `PhoneCode`) V
 (79, 212, 'YALOVA', '77', '226'),
 (80, 212, 'YOZGAT', '66', '354'),
 (81, 212, 'ZONGULDAK', '67', '372');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `country`
---
-
-DROP TABLE IF EXISTS `country`;
-CREATE TABLE IF NOT EXISTS `country` (
-  `CountryID` int(11) NOT NULL AUTO_INCREMENT,
-  `BinaryCode` varchar(2) NOT NULL,
-  `TripleCode` varchar(3) NOT NULL,
-  `CountryName` varchar(100) NOT NULL,
-  `PhoneCode` varchar(6) NOT NULL,
-  PRIMARY KEY (`CountryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=233 DEFAULT CHARSET=utf8;
 
 --
 -- Tablo döküm verisi `country`
@@ -385,21 +352,6 @@ INSERT INTO `country` (`CountryID`, `BinaryCode`, `TripleCode`, `CountryName`, `
 (230, 'ZM', 'ZMB', 'Zambia', '260'),
 (231, 'ZW', 'ZWE', 'Zimbabwe', '263'),
 (232, 'CY', 'CYP', 'KKTC', '90');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `district`
---
-
-DROP TABLE IF EXISTS `district`;
-CREATE TABLE IF NOT EXISTS `district` (
-  `DistrictID` int(11) NOT NULL AUTO_INCREMENT,
-  `TownID` int(11) NOT NULL,
-  `DistrictName` varchar(100) NOT NULL,
-  PRIMARY KEY (`DistrictID`),
-  KEY `FK_District_TownID` (`TownID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2443 DEFAULT CHARSET=utf8;
 
 --
 -- Tablo döküm verisi `district`
@@ -2849,22 +2801,6 @@ INSERT INTO `district` (`DistrictID`, `TownID`, `DistrictName`) VALUES
 (2440, 972, 'BEYCUMA'),
 (2441, 972, 'MERKEZKÖYLER'),
 (2442, 972, 'ZONGULDAK');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `neighborhood`
---
-
-DROP TABLE IF EXISTS `neighborhood`;
-CREATE TABLE IF NOT EXISTS `neighborhood` (
-  `NeighborhoodID` int(11) NOT NULL AUTO_INCREMENT,
-  `DistrictID` int(11) NOT NULL,
-  `NeighborhoodName` varchar(100) NOT NULL,
-  `ZipCode` varchar(20) NOT NULL,
-  PRIMARY KEY (`NeighborhoodID`),
-  KEY `FK_Neighborhood_DistrictID` (`DistrictID`)
-) ENGINE=InnoDB AUTO_INCREMENT=73638 DEFAULT CHARSET=utf8;
 
 --
 -- Tablo döküm verisi `neighborhood`
@@ -76573,21 +76509,6 @@ INSERT INTO `neighborhood` (`NeighborhoodID`, `DistrictID`, `NeighborhoodName`, 
 (73636, 2442, 'YENİ MAH', '67100'),
 (73637, 2442, 'YEŞİL MAH', '67100');
 
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `town`
---
-
-DROP TABLE IF EXISTS `town`;
-CREATE TABLE IF NOT EXISTS `town` (
-  `TownID` int(11) NOT NULL AUTO_INCREMENT,
-  `CityID` int(11) NOT NULL,
-  `TownName` varchar(50) NOT NULL,
-  PRIMARY KEY (`TownID`),
-  KEY `FK_Town_CityID` (`CityID`)
-) ENGINE=InnoDB AUTO_INCREMENT=973 DEFAULT CHARSET=utf8;
-
 --
 -- Tablo döküm verisi `town`
 --
@@ -77565,34 +77486,6 @@ INSERT INTO `town` (`TownID`, `CityID`, `TownName`) VALUES
 (970, 81, 'KİLİMLİ'),
 (971, 81, 'KOZLU'),
 (972, 81, 'MERKEZ');
-
---
--- Dökümü yapılmış tablolar için kısıtlamalar
---
-
---
--- Tablo kısıtlamaları `city`
---
-ALTER TABLE `city`
-  ADD CONSTRAINT `FK_City_CountryID` FOREIGN KEY (`CountryID`) REFERENCES `country` (`CountryID`) ON DELETE NO ACTION;
-
---
--- Tablo kısıtlamaları `district`
---
-ALTER TABLE `district`
-  ADD CONSTRAINT `FK_District_TownID` FOREIGN KEY (`TownID`) REFERENCES `town` (`TownID`) ON DELETE NO ACTION;
-
---
--- Tablo kısıtlamaları `neighborhood`
---
-ALTER TABLE `neighborhood`
-  ADD CONSTRAINT `FK_Neighborhood_DistrictID` FOREIGN KEY (`DistrictID`) REFERENCES `district` (`DistrictID`) ON DELETE NO ACTION;
-
---
--- Tablo kısıtlamaları `town`
---
-ALTER TABLE `town`
-  ADD CONSTRAINT `FK_Town_CityID` FOREIGN KEY (`CityID`) REFERENCES `city` (`CityID`) ON DELETE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
